@@ -1,6 +1,22 @@
 #!/usr/bin/env ruby
 %w|rubygems active_record irb|.each {|lib| require lib}
 
+class ActiveRecord::Base
+  def self.inherited(c)
+    %w{ add remove change rename }.each do |action|
+      method = "#{action}_column"
+      (class << c; self; end).class_eval do
+        define_method(method) do |*args|
+          ActiveRecord::Schema.define do
+            send(method, *args.unshift(c.table_name))
+          end
+          reset_column_information
+        end
+      end
+    end
+  end
+end
+
 class Number < ActiveRecord::Base
   belongs_to :group
 end
