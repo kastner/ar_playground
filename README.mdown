@@ -1,0 +1,8 @@
+Active Record Playground
+========================
+
+[Active Record](http://api.rubyonrails.org/classes/ActiveRecord/Base.html "Class: ActiveRecord::Base") is a fantastic ORM(Object Relational Mapping) library in ruby that is the basis of Ruby on Rails' database layer.
+
+ar\_playground is a simple script for exploring the ins-and-outs of Active Record in a clean, non-destructive way.
+
+It creates and in-memory sqlite3 database, creates the tables and models you define, then drops you into an interactive ruby shell (IRB) to interact with your domain model. When you exit irb, the database is gone!
